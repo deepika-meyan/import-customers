@@ -76,7 +76,6 @@ class ImportJsonCustomers extends Command
             $customer->setGroupId(1);
 
             try {
-                //$customer->save();
                 $this->customerRepository->save($customer, $hashedPassword);
                 $output->writeln(__('Customer %1 imported successfully.', $customer->getEmail()));
             } catch (\Exception $e) {

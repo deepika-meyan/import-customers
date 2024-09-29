@@ -83,16 +83,15 @@ class ImportCsvCustomers extends Command
                 $customer->setEmail($data[2]);
                 $customer->setGroupId(1);
 
-                //$customer->save();
                $this->customerRepository->save($customer, $hashedPassword);
-                $output->writeln("<info>Imported: {$data[0]}</info>");
+                $output->writeln(__('Customer %1 imported successfully.', $data[2]));
             } catch (LocalizedException $e) {
                 $output->writeln("<error>Error importing customer: {$data[0]} - {$e->getMessage()}</error>");
             }
         }
 
         fclose($handle);
-        $output->writeln("<info>Customer import completed.</info>");
+        $output->writeln("<info>Customer import from CSV completed.</info>");
         return Command::SUCCESS;
 
     }
