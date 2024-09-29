@@ -13,15 +13,22 @@ This module is built in Magento versio 2.4.6-p3 and php version 8.2
    ```
 
 
-**To Import Customer By CSV file:**
+**To Import Customer By JSON file:**
    ```bash
    bin/magento customer:import:sample-json <filepath>
    ```
 
 **Example**
 
-bin/magento customer:import:sample-csv sample.csv // in root path
-bin/magento customer:import:sample-json sample.json // // in root path
+```bash
+   bin/magento customer:import:sample-csv sample.csv
+   ```
+   // in root path
+
+```bash
+   bin/magento customer:import:sample-json sample.json
+   ```
+   // in root path
 
 
 
