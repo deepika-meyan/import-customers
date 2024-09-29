@@ -1,0 +1,27 @@
+{
+    "name": "deepika/import-customers",
+    "description": "Import Customer by CSV and Json by CLI Commands",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+      ],
+    "authors": [
+    {
+      "name": "Deepika Meyan",
+      "email": "deepikameyan31@gmail.com"
+    }
+  ],
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.3.0||~7.4.0||~8.1.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Deepika\\ImportCustomers\\": ""
+        }
+    }
+}
+

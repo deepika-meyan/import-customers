@@ -1,0 +1,97 @@
+<?php
+
+namespace Deepika\ImportCustomers\Console\Command;
+
+use Magento\Framework\App\State;
+use Magento\Framework\App\Area;
+use Magento\Customer\Model\CustomerFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Deepika\ImportCustomers\ImportData;
+
+
+class ImportCsvCustomers extends Command
+{
+    const COMMAND_NAME = 'customer:import';
+
+    protected $customerFactory;
+    protected $state;
+    protected $importData;
+
+    public function __construct(
+        CustomerFactory $customerFactory,
+        State $state,
+        ImportData $importData
+    ) {
+        $this->customerFactory = $customerFactory;
+        $this->state = $state;
+        $this->importData = $importData;
+        parent::__construct();
+    }
+
+    protected function configure()
+    {
+        $this->setName('customer:import')
+            ->setDescription('Import customers from a CSV file')
+            ->addArgument('type', InputArgument::REQUIRED, 'Type of import (sample-csv)')
+            ->addArgument('file', InputArgument::REQUIRED, 'Path to the CSV file');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $type = $input->getArgument('type');
+        $filePath = $input->getArgument('file');
+
+       
+        if (!file_exists($filePath)) {
+            $output->writeln("<error>File not found: $filePath</error>");
+            return;
+        }
+
+
+        switch ($type) {
+            case 'csv':
+                $importData->importByCsv();
+                break;
+            case 'json':
+                $importData->importByJson();
+                break;
+            default:
+                throw new LocalizedException(__('Error import file "%1".', $filePath));
+        }
+
+        $this->state->setAreaCode(Area::AREA_GLOBAL);
+
+        $handle = fopen($filePath, 'r');
+        if ($handle === false) {
+            $output->writeln("<error>Unable to open file: $filePath</error>");
+            return;
+        }
+
+        while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+            try {
+                if (count($data) < 3) {
+                    $output->writeln("<error>Invalid data for customer: " . implode(',', $data) . "</error>");
+                    continue;
+                }
+
+                $customer = $this->customerFactory->create();
+                $customer->setFirstname($data[0]);
+                $customer->setLastname($data[1]);
+                $customer->setPassword('defaultPassword123'); // Set a default password
+                $customer->setEmail($data[2]);
+
+                $customer->save();
+                $output->writeln("<info>Imported: {$data[0]}</info>");
+            } catch (LocalizedException $e) {
+                $output->writeln("<error>Error importing customer: {$data[0]} - {$e->getMessage()}</error>");
+            }
+        }
+
+        fclose($handle);
+        $output->writeln("<info>Customer import completed.</info>");
+    }
+}
