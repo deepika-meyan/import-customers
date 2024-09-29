@@ -12,7 +12,6 @@ This module is built in Magento versio 2.4.6-p3 and php version 8.2
    composer require deepika-meyan/import-customers
    ```
 
-
 # Import CLI command
 
 **To Import Customer By CSV file:**
