@@ -7,15 +7,15 @@
   "type": "magento2-module",
   "version": "1.0.0",
   "license": [
-      "proprietary"
-  ],
+          "OSL-3.0",
+          "AFL-3.0"
+      ],
   "authors": [
       {
           "name": "Deepika Meyan",
           "email": "deepikameyan31@gmail.com"
       }
   ],
-  "minimum-stability": "stable",
   "autoload": {
       "files": [
           "registration.php"
