@@ -15,7 +15,7 @@
           "email": "deepikameyan31@gmail.com"
       }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "autoload": {
       "files": [
           "registration.php"
