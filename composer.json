@@ -2,7 +2,7 @@
   "name": "deepika-meyan/import-customers",
   "description": "Import Customer by CSV and Json by CLI Commands",
   "require": {
-    "php": "~7.3.0||~7.4.0||~8.1.0"
+    "php": ">=7.4.3"
   },
   "type": "magento2-module",
   "version": "1.0.0",
