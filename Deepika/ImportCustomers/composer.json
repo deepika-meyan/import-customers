@@ -1,5 +1,5 @@
 {
-    "name": "Deepika0331/import-customers",
+    "name": "deepika/import-customers",
     "description": "Import Customer by CSV and Json by CLI Commands",
     "type": "magento2-module",
     "license": [
