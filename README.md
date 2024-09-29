@@ -5,6 +5,14 @@ Import Customer by Csv or Json in Magento 2
 # Version Support
 This module is built in Magento versio 2.4.6-p3 and php version 8.2
 
+
+# Command to install module through composer
+
+ ```bash
+   composer require deepika-meyan/import-customers
+   ```
+
+
 # Import CLI command
 
 **To Import Customer By CSV file:**
