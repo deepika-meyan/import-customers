@@ -15,7 +15,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~7.3.0||~7.4.0||~8.1.0"
+        "php": "~7.3.0||~7.4.0||~8.1.0",
+        "deepika0331/import-customers": "*"
     },
     "autoload": {
         "files": [
