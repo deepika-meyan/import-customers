@@ -1,7 +1,11 @@
 {
   "name": "deepika-meyan/import-customers",
   "description": "Import Customer by CSV and Json by CLI Commands",
+  "require": {
+    "php": "~7.3.0||~7.4.0||~8.1.0"
+  },
   "type": "magento2-module",
+  "version": "1.0.0",
   "license": [
       "proprietary"
   ],
@@ -11,11 +15,7 @@
           "email": "deepikameyan31@gmail.com"
       }
   ],
-  "version": "1.0.0",
   "minimum-stability": "dev",
-  "require": {
-      "php": "~7.3.0||~7.4.0||~8.1.0"
-  },
   "autoload": {
       "files": [
           "registration.php"
